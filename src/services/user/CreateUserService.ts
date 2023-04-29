@@ -38,7 +38,10 @@ class CreateUserService {
       },
     });
 
-    return user;
+    return {
+      data: user,
+      message: "Usuário cadastrado com sucesso",
+    };
   }
 }
 
