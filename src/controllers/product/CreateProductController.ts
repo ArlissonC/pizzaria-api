@@ -20,7 +20,7 @@ class CreateProductController {
         price,
       });
 
-      res.json(product);
+      res.json({ message: "Produto cadastrado com sucesso!" });
     }
   }
 }
