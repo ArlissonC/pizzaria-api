@@ -11,7 +11,7 @@ class FinishOrderController {
     const order = await finishOrderService.execute({ order_id });
     io.emit("new-order", "new order");
 
-    res.json(order);
+    res.json({ message: "Ordem finalizada com sucesso!" });
   }
 }
 

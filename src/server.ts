@@ -3,7 +3,7 @@ import "express-async-errors";
 import cors from "cors";
 import { router } from "./routes";
 import path from "path";
-import { server } from "./websocket";
+import http from "http";
 
 const app = express();
 
@@ -27,6 +27,8 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
+const server = http.createServer(app);
+
 server.listen(3333, () => console.log("Server rodando na porta 3333"));
 
-export { app };
+export { server };
