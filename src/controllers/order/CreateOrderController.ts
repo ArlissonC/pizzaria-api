@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { CreateOrderService } from "../../services/order/CreateOrderService";
+import { io } from "../../server";
 
 class CreateOrderController {
   async handle(req: Request, res: Response) {
@@ -8,7 +9,6 @@ class CreateOrderController {
     const { table, name } = req.body;
 
     const order = await createOrderService.execute({ table, name });
-
     return res.json(order);
   }
 }
