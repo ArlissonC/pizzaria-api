@@ -4,7 +4,7 @@ import cors from "cors";
 import { router } from "./routes";
 import path from "path";
 import http from "http";
-// import { Server } from "socket.io";
+import { Server } from "socket.io";
 
 const app = express();
 
@@ -17,11 +17,11 @@ app.use("/files", express.static(path.resolve(__dirname, "..", "tmp")));
 
 const server = http.createServer(app);
 
-// const io = new Server(server, {
-//   cors: {
-//     origin: "*",
-//   },
-// });
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof Error) {
@@ -36,14 +36,14 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-// io.on("connection", (socket) => {
-//   console.log("Client connected");
+io.on("connection", (socket) => {
+  console.log("Client connected");
 
-//   socket.on("disconnect", () => {
-//     console.log("Client disconnected");
-//   });
-// });
+  socket.on("disconnect", () => {
+    console.log("Client disconnected");
+  });
+});
 
 server.listen(3333, () => console.log("Server rodando na porta 3333"));
 
-// export { io };
+export { io };
