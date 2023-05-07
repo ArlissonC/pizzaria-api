@@ -8,7 +8,7 @@ class CreateCategoryController {
 
     const category = await createCategoryService.execute({ name });
 
-    return res.json(category);
+    return res.json({ message: "Categoria cadastrada com sucesso!" });
   }
 }
 
